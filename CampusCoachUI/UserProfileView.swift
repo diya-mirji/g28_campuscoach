@@ -35,10 +35,11 @@ struct UserProfileView: View {
                 Section(header: Text("Sleep Preferences")) {
                     DatePicker("Time You Wake Up", selection: $wakeUpTime, displayedComponents: .hourAndMinute)
                     DatePicker("Time You Sleep", selection: $sleepTime, displayedComponents: .hourAndMinute)
-                    Toggle("Nap", isOn: $shouldNap)
-                        .toggleStyle(SwitchToggleStyle(tint: .purple))
+                    //Toggle("Nap", isOn: $shouldNap)
+                    //    .toggleStyle(SwitchToggleStyle(tint: .purple))
                 }
                 
+                //EDIT ACTIVITY PREFERENCES AFTER IMPLEMENTING WORKOUT INFO
                 Section(header: Text("Activity Preferences")) {
                     DatePicker("Start Time", selection: $startTime, displayedComponents: .hourAndMinute)
                     TextField("Duration (minutes)", text: $duration) //maybe a picker
@@ -46,7 +47,7 @@ struct UserProfileView: View {
                 }
                 
                 Section(header: Text("Food Preferences")) {
-                    TextField("Daily Calories", text: $calories)
+                    TextField("Daily Calorie Intake Goal", text: $calories)
                 }
                 
             }
