@@ -52,8 +52,11 @@ struct UserProfileView: View {
                 
             }
             .navigationTitle("User Profile")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    //Image(systemName: "person")
+                    
                     Button {
                         hideKeyboard()
                     } label: {
@@ -61,6 +64,7 @@ struct UserProfileView: View {
                     }
                     
                     Button("Save", action: saveUser)
+                    
                 }
             }
         }

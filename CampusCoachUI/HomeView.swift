@@ -13,7 +13,6 @@ struct HomeView: View {
     @State private var lifestyle_score = 78.0
     @State private var minValue = 0.0
     @State private var maxValue = 100.0
-    let gradient = Gradient(colors: [.green, .yellow, .orange, .red])
     
     var body: some View {
         NavigationView {
@@ -30,8 +29,9 @@ struct HomeView: View {
                 
                 //Score Gauge
                 Gauge(value: lifestyle_score, in: minValue...maxValue) {
-                    Image(systemName: "heart.fill")
-                        .foregroundColor(.red)
+                    Text("Calories")
+//                    Image(systemName: "heart.fill")
+//                        .foregroundColor(.red)
                 } currentValueLabel: {
                     Text("\(Int(lifestyle_score))")
                         .foregroundColor(Color.black)
