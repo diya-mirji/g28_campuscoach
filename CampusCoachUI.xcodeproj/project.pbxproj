@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62758F342A2551E1006972CC /* UserProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62758F332A2551E1006972CC /* UserProfileData.swift */; };
 		6291AA972A2001C500448836 /* CampusCoachUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6291AA962A2001C500448836 /* CampusCoachUIApp.swift */; };
 		6291AA992A2001C500448836 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6291AA982A2001C500448836 /* ContentView.swift */; };
 		6291AA9B2A2001C600448836 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6291AA9A2A2001C600448836 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62758F332A2551E1006972CC /* UserProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileData.swift; sourceTree = "<group>"; };
 		6291AA932A2001C500448836 /* CampusCoachUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusCoachUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6291AA962A2001C500448836 /* CampusCoachUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusCoachUIApp.swift; sourceTree = "<group>"; };
 		6291AA982A2001C500448836 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				62937F442A207792008307AB /* FoodView.swift */,
 				62937F422A207786008307AB /* ActivityView.swift */,
 				62937F3E2A206F50008307AB /* UserProfileView.swift */,
+				62758F332A2551E1006972CC /* UserProfileData.swift */,
 				6291AA9A2A2001C600448836 /* Assets.xcassets */,
 				6291AA9C2A2001C600448836 /* Preview Content */,
 			);
@@ -283,6 +286,7 @@
 				62937F3F2A206F50008307AB /* UserProfileView.swift in Sources */,
 				62937F472A207B6A008307AB /* StartView.swift in Sources */,
 				62937F432A207786008307AB /* ActivityView.swift in Sources */,
+				62758F342A2551E1006972CC /* UserProfileData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

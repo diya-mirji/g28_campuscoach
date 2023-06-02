@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct StartView: View {
+    private var user_data = UserProfileData()
+    
     var body: some View {
         NavigationView {
             VStack{
@@ -27,7 +29,7 @@ struct StartView: View {
                 Spacer()
                     .frame(width: 100, height: 50)
                 
-                NavigationLink(destination: UserProfileView(), label: {
+                NavigationLink(destination: UserProfileView(user_data: self.user_data), label: {
                     Text("Enter User Info")
                         .bold()
                         .frame(width:280, height:50)
@@ -36,7 +38,7 @@ struct StartView: View {
                         .cornerRadius(10)
                 })
                 
-                NavigationLink(destination: ContentView(), label: {
+                NavigationLink(destination: ContentView(user_data: self.user_data), label: {
                     Text("Start")
                         .bold()
                         .frame(width:280, height:50)

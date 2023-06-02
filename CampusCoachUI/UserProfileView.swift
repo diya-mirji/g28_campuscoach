@@ -11,17 +11,27 @@ import SwiftUI
 struct UserProfileView: View {
     @State private var firstName = ""
     @State private var lastName = ""
-    @State private var birthdate = Date()
+    @State private var age = ""
+    //@State private var birthdate = Date()
     
-    @State private var shouldNap = false
+    //@State private var shouldNap = false
     @State private var wakeUpTime = Date()
     @State private var sleepTime = Date()
+    @State private var lunchtime = Date()
     
-    @State private var startTime = Date()
-    @State private var duration = "" //change into int later
+    //@State private var startTime = Date()
+    //@State private var duration = "" //change into int later
     @State private var stepsGoal = "" //change into int later
     
     @State private var calories = "" //change into int later
+    
+    
+    private var user_data = UserProfileData()
+    
+    init(user_data: UserProfileData) {
+        self.user_data = user_data
+    }
+    
     
     var body: some View {
         NavigationView {
@@ -29,20 +39,22 @@ struct UserProfileView: View {
                 Section(header: Text("Personal Information")) {
                     TextField("First Name", text: $firstName)
                     TextField("Last Name", text: $lastName)
-                    DatePicker("Birthdate", selection: $birthdate, displayedComponents: .date)
+                    TextField("Age", text: $age)
+                    //DatePicker("Birthdate", selection: $birthdate, displayedComponents: .date)
                 }
                 
                 Section(header: Text("Sleep Preferences")) {
                     DatePicker("Time You Wake Up", selection: $wakeUpTime, displayedComponents: .hourAndMinute)
                     DatePicker("Time You Sleep", selection: $sleepTime, displayedComponents: .hourAndMinute)
+                    DatePicker("Lunchtime", selection: $lunchtime, displayedComponents: .hourAndMinute)
                     //Toggle("Nap", isOn: $shouldNap)
                     //    .toggleStyle(SwitchToggleStyle(tint: .purple))
                 }
                 
                 //EDIT ACTIVITY PREFERENCES AFTER IMPLEMENTING WORKOUT INFO
                 Section(header: Text("Activity Preferences")) {
-                    DatePicker("Start Time", selection: $startTime, displayedComponents: .hourAndMinute)
-                    TextField("Duration (minutes)", text: $duration) //maybe a picker
+                    //DatePicker("Start Time", selection: $startTime, displayedComponents: .hourAndMinute)
+                    //TextField("Duration (minutes)", text: $duration) //maybe a picker
                     TextField("Steps Goal", text: $stepsGoal)
                 }
                 
@@ -72,11 +84,26 @@ struct UserProfileView: View {
     }
     
     func saveUser() {
+        print("\(self.firstName), \(self.lastName), \(self.age)")
+        print("\(self.wakeUpTime), \(self.sleepTime), \(self.lunchtime)")
+        print("\(self.stepsGoal)")
+        print("\(self.calories)")
+        
+        self.user_data.setFirstName(firstName: self.firstName)
+        print(self.user_data.getFirstName())
+        self.user_data.setLastName(lastName: self.lastName)
+        self.user_data.setAge(age: self.age)
+        
+        self.user_data.setWakeUpTime(wakeUpTime: self.wakeUpTime)
+        self.user_data.setSleepTime(sleepTime: self.sleepTime)
+        //print(self.user_data.getTimeSlept())
+        self.user_data.setLunchtime(lunchtime: self.lunchtime)
+        
+        self.user_data.setStepsGoal(stepsGoal: self.stepsGoal)
+        
+        self.user_data.setCalories(calories: self.calories)
+        
         print("user saved!")
-        print("\(firstName), \(lastName), \(birthdate)")
-        print("\(shouldNap), \(wakeUpTime), \(sleepTime)")
-        print("\(startTime), \(duration), \(stepsGoal)")
-        print("\(calories)")
     }
 }
 

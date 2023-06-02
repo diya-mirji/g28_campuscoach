@@ -10,14 +10,28 @@ import SwiftUI
 
 struct SleepView: View {
     
-    @State private var time_slept = 6.4 //calculated wakeup - bed
+    private var time_slept = 0.0 //time in bed from hk data
     @State private var minValue = 0.0
     @State private var maxValue = 24.0
     
-    @State private var deep_sleep = 3.4
-    @State private var rem_sleep = 2.6
+    private var deep_sleep = 3.4
+    private var rem_sleep = 2.6
+    
+    private var user_age = 0
+    private var user_lunchtime = (0, 0)
     
     let navy = Color(red:16/255, green:4/255, blue:125/255)
+    
+    
+    private var user_data = UserProfileData()
+    
+    init(user_data: UserProfileData) {
+        self.user_data = user_data
+        self.time_slept = Double(self.user_data.getTimeSlept())
+        self.user_age = self.user_data.getAge()
+        self.user_lunchtime = self.user_data.getLunchtime()
+        print(time_slept, user_age, user_lunchtime)
+    }
     
     var body: some View {
         NavigationView {
@@ -108,7 +122,7 @@ struct SleepView: View {
                     .bold()
                 
                 //Nap Rec 1
-                Text("20 minutes at 2:30pm")
+                Text(self.suggestNap(when:"before"))//"20 minutes at 2:30pm")
                     .font(.title3)
                     .padding(.horizontal, 60.0)
                     .padding(.vertical, 20.0)
@@ -117,7 +131,7 @@ struct SleepView: View {
                     .cornerRadius(50)
                 
                 //Nap Rec 2
-                Text("40 minutes at 4:20pm")
+                Text(self.suggestNap(when: "after"))//"40 minutes at 4:20pm")
                     .font(.title3)
                     .padding(.horizontal, 60.0)
                     .padding(.vertical, 20.0)
@@ -131,7 +145,47 @@ struct SleepView: View {
             
         }
         .accentColor(.purple)
+        
     }
+    
+    func suggestNap(when: String) -> String {
+        let sleep_hrs = [2: [11, 14], 5: [10, 13], 13: [9, 12], 17: [8, 10], 100: [7, 9]]
+        var nap_duration = 0
+        
+        if self.time_slept < 5 {
+            nap_duration = 60
+        }
+        else {
+            var minhr = 0
+            var maxhr = 24
+            for (_, (a, h)) in sleep_hrs.enumerated() {
+                if self.user_age <= a {
+                    minhr = h[0]
+                    maxhr = h[1]
+                    break
+                }
+            }
+            if self.time_slept < Double(minhr) {
+                nap_duration = 30
+            }
+            else if self.time_slept > Double(maxhr) {
+                nap_duration = 15
+            }
+            else {
+                nap_duration = 22
+            }
+        }
+        
+        if when == "before" {
+            return "\(nap_duration) minutes at \(self.user_lunchtime.0 - 1):\(self.user_lunchtime.1)"
+        }
+        else {
+            return "\(nap_duration) minutes at \(self.user_lunchtime.0 + 1):\(self.user_lunchtime.1)"
+        }
+    }
+    
+    
+    
 }
 
 

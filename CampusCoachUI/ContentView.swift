@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    private var user_data = UserProfileData()
+    
+    init(user_data: UserProfileData) {
+        self.user_data = user_data
+    }
+    
     var body: some View {
         
         TabView {
@@ -17,7 +24,7 @@ struct ContentView: View {
                     Text("Home")
                 }
             
-            SleepView()
+            SleepView(user_data: self.user_data)
                 .tabItem {
                     Image(systemName: "bed.double.fill")
                     Text("Sleep")
@@ -35,7 +42,7 @@ struct ContentView: View {
                     Text("Activity")
                 }
             
-            UserProfileView()
+            UserProfileView(user_data: self.user_data)
                 .tabItem {
                     Image(systemName: "person")
                     Text("User Profile")
