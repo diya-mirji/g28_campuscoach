@@ -17,14 +17,15 @@ struct StartView: View {
                 Text("Campus Coach")
                     .font(.largeTitle)
                     .fontWeight(.bold)
+                    .foregroundColor(.white)
                 
                 Spacer()
                     .frame(width: 100, height: 50)
                 
-                Image(systemName: "figure.run.circle")
+                Image("Campus Coach Diagonal")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 400, height: 300)
+                    .frame(width: 350, height: 250)
                 
                 Spacer()
                     .frame(width: 100, height: 50)
@@ -33,8 +34,10 @@ struct StartView: View {
                     Text("Enter User Info")
                         .bold()
                         .frame(width:280, height:50)
-                        .background(Color.indigo)
-                        .foregroundColor(.white)
+                        //.background(Color.indigo)
+                        //.foregroundColor(.white)
+                        .background(Color.white)
+                        .foregroundColor(Color(red: 0.42, green: 0.39, blue: 1.0))
                         .cornerRadius(10)
                 })
                 
@@ -42,11 +45,15 @@ struct StartView: View {
                     Text("Start")
                         .bold()
                         .frame(width:280, height:50)
-                        .background(Color.purple)
+                        // Note we can decide this later on
+                        .background(Color.indigo)
+                        //.background(Color(red: 0.62, green: 0.59, blue: 1.0))
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 })
             }
+            .frame(width: 400, height: 800)
+            .background(Color(red: 0.42, green: 0.39, blue: 1.0))
         }
         .accentColor(.purple)
     }
