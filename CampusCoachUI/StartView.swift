@@ -10,7 +10,7 @@ import SwiftUI
 
 struct StartView: View {
     private var user_data = UserProfileData()
-    
+    //testtest
     var body: some View {
         NavigationView {
             VStack{
