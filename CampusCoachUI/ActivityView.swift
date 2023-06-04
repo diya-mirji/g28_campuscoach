@@ -137,4 +137,3 @@ let workoutsData = [
     Workout(day: "Tuesday", bodyPart: "Body", image: "meditation", routine: ["Warmup", "Pullups", "Cool Down"]),
     Workout(day: "Wednesday", bodyPart: "Arms", image: "twoworkout", routine: ["Warmup", "Curls", "Cool Down"])
 ]
-

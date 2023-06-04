@@ -21,6 +21,7 @@
 		62937F432A207786008307AB /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62937F422A207786008307AB /* ActivityView.swift */; };
 		62937F452A207792008307AB /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62937F442A207792008307AB /* FoodView.swift */; };
 		62937F472A207B6A008307AB /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62937F462A207B6A008307AB /* StartView.swift */; };
+		87129AC72A2C517A00DDFCA7 /* ActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87129AC62A2C517A00DDFCA7 /* ActivityDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		62937F422A207786008307AB /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		62937F442A207792008307AB /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
 		62937F462A207B6A008307AB /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		87129AC62A2C517A00DDFCA7 /* ActivityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				62937F402A207756008307AB /* SleepView.swift */,
 				62937F442A207792008307AB /* FoodView.swift */,
 				62937F422A207786008307AB /* ActivityView.swift */,
+				87129AC62A2C517A00DDFCA7 /* ActivityDetailView.swift */,
 				62937F3E2A206F50008307AB /* UserProfileView.swift */,
 				62758F332A2551E1006972CC /* UserProfileData.swift */,
 				6291AA9A2A2001C600448836 /* Assets.xcassets */,
@@ -286,6 +289,7 @@
 				62937F3F2A206F50008307AB /* UserProfileView.swift in Sources */,
 				62937F472A207B6A008307AB /* StartView.swift in Sources */,
 				62937F432A207786008307AB /* ActivityView.swift in Sources */,
+				87129AC72A2C517A00DDFCA7 /* ActivityDetailView.swift in Sources */,
 				62758F342A2551E1006972CC /* UserProfileData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
