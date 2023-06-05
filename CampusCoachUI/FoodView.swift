@@ -10,11 +10,18 @@ import SwiftUI
 
 struct FoodView: View {
     
-    @State private var daily_calories = 1789.0 //from user profile
+    private var daily_calories = 1789.0 //from user profile
     @State private var minValue = 0.0
-    @State private var maxValue = 2000.0
+    private var maxValue = 2000.0
     //maxValue should be the daily calories the user needs (2000/2500)
     
+    private var user_data = UserProfileData()
+    
+    init(user_data: UserProfileData) {
+        self.user_data = user_data
+        self.daily_calories = Double(self.user_data.getCalories())
+        self.maxValue = Double(self.user_data.getRightCalories())
+    }
     
     var body: some View {
         NavigationView {

@@ -27,10 +27,13 @@ struct SleepView: View {
     
     init(user_data: UserProfileData) {
         self.user_data = user_data
-        self.time_slept = Double(self.user_data.getTimeSlept())
+        self.time_slept = self.user_data.getTimeInBed()
         self.user_age = self.user_data.getAge()
         self.user_lunchtime = self.user_data.getLunchtime()
-        print(time_slept, user_age, user_lunchtime)
+        print("sleepview, lunchtime", self.user_lunchtime)
+        print("sleepview, time_slept", self.time_slept)
+        self.rem_sleep = self.user_data.getREMSleep()
+        self.deep_sleep = self.user_data.getDeepSleep()
     }
     
     var body: some View {
@@ -176,12 +179,43 @@ struct SleepView: View {
             }
         }
         
+        var text = ""
+        var hour = self.user_lunchtime.0
+        let minute = self.user_lunchtime.1
         if when == "before" {
-            return "\(nap_duration) minutes at \(self.user_lunchtime.0 - 1):\(self.user_lunchtime.1)"
+            hour = hour - 1
         }
         else {
-            return "\(nap_duration) minutes at \(self.user_lunchtime.0 + 1):\(self.user_lunchtime.1)"
+            hour = hour + 1
         }
+        
+        if hour > 12 {
+            hour = hour - 12
+            if String(minute).count == 1 {
+                text = "\(nap_duration) minutes at \(hour):0\(minute)PM"
+            }
+            else {
+                text = "\(nap_duration) minutes at \(hour):\(minute)PM"
+            }
+        }
+        else if hour == 12 {
+            if String(minute).count == 1 {
+                text = "\(nap_duration) minutes at \(hour):0\(minute)PM"
+            }
+            else {
+                text = "\(nap_duration) minutes at \(hour):\(minute)PM"
+            }
+        }
+        else {
+            if String(minute).count == 1 {
+                text = "\(nap_duration) minutes at \(hour):0\(minute)AM"
+            }
+            else {
+                text = "\(nap_duration) minutes at \(hour):\(minute)AM"
+            }
+        }
+        
+        return text
     }
     
     
@@ -233,9 +267,9 @@ struct SleepGaugeStyle: GaugeStyle {
 
 
 
-struct SleepView_Previews: PreviewProvider {
-    static var previews: some View {
-        StartView()
-
-    }
-}
+//struct SleepView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StartView()
+//
+//    }
+//}

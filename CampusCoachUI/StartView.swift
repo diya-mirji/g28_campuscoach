@@ -56,12 +56,40 @@ struct StartView: View {
             .background(Color(red: 0.42, green: 0.39, blue: 1.0))
         }
         .accentColor(.purple)
+        .onAppear {
+            HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
+                guard authorized else {
+                    let baseMessage = "HealthKit Authorization Failed"
+                    
+                    if let error = error {
+                        print("\(baseMessage). Reason: \(error.localizedDescription)")
+                    } else {
+                        print(baseMessage)
+                    }
+                    return
+                }
+                print("HealthKit Successfully Authorized.")
+            }
+            
+            //get healthkit data and store in user_data
+            do {
+                try self.user_data.readSex()
+                self.user_data.calcRightCalories()
+                self.user_data.readEnergy() // String(format: "%.2f", self.user_data.getEnergy())
+                self.user_data.readTimeInBed()
+                self.user_data.readREMDeepSleep()
+                
+            } catch {
+                print("HealthKit Unsuccessful")
+            }
+        }
     }
 }
 
-struct StartView_Previews: PreviewProvider {
-    static var previews: some View {
-        StartView()
-        
-    }
-}
+
+//struct StartView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StartView()
+//
+//    }
+//}
