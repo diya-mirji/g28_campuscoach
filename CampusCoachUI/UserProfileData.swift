@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 class UserProfileData {
+    private var uid = UIDevice.current.identifierForVendor?.uuidString
     private var firstName = ""
     private var lastName = ""
     private var age = 0
@@ -64,6 +66,9 @@ class UserProfileData {
     
     
     //getters
+    func getUserId() -> String {
+        return self.uid!
+    }
     func getFirstName() -> String {
         return self.firstName
     }
@@ -81,6 +86,10 @@ class UserProfileData {
     }
     func getLunchtime() -> (hour: Int, minute: Int) {
         return getDateTime(myDate: self.lunchtime)
+    }
+    
+    func getStepsGoal() -> Int {
+        return self.stepsGoal
     }
     
     func getCalories() -> Int {
