@@ -40,7 +40,7 @@ struct HomeView: View {
 //                    Image(systemName: "heart.fill")
 //                        .foregroundColor(.red)
                 } currentValueLabel: {
-                    Text("\(Int(lifestyle_score))")
+                    Text("\(lifestyle_score)")
                         .foregroundColor(Color.black)
                 }
                 .gaugeStyle(ScoreGaugeStyle())
