@@ -7,6 +7,28 @@
 
 import Foundation
 import SwiftUI
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
+//
+//extension AuthenticationViewModel {
+//    func signIn() {
+//        if Auth.auth().currentUser == nil {
+//            Task {
+//                do {
+//                    try await Auth.auth().signInAnonymously()
+//                } catch {
+//                    print("issue logging in anonymously")
+//                }
+//            }
+//        } else {
+//            print("Someone is signed in")
+//            if let user = Auth.auth().currentUser {
+//                print(user.uid)
+//            }
+//        }
+//    }
+//}
 
 struct StartView: View {
     private var user_data = UserProfileData()

@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct UserProfileView: View {
+    @ObservedObject var userprofileVM = UserProfileModel()
+    
     @State private var firstName = ""
     @State private var lastName = ""
     @State private var age = ""
@@ -37,29 +39,53 @@ struct UserProfileView: View {
         NavigationView {
             Form {
                 Section(header: Text("Personal Information")) {
-                    TextField("First Name", text: $firstName)
-                    TextField("Last Name", text: $lastName)
-                    TextField("Age", text: $age)
+                    if (userprofileVM.user_data.getFirstName() == ""){
+                        TextField("First Name", text: $firstName)
+                    }else{
+                        TextField(userprofileVM.user_data.getFirstName(), text: $firstName)
+                    }
+                    
+                    if (userprofileVM.user_data.getLastName() == ""){
+                        TextField("Last Name", text: $lastName)
+                    }else{
+                        TextField(userprofileVM.user_data.getLastName(), text: $lastName)
+                    }
+                    
+//                    TextField("First Name", text: $userprofile.firstname)
+//                    TextField("Last Name", text: $userprofile.lastname)
+                    if (userprofileVM.user_data.getAge() == 0){
+                        TextField("Age", text: $age)
+                    }else{
+                        TextField(String(userprofileVM.user_data.getAge()), text: $age)
+                    }
                     //DatePicker("Birthdate", selection: $birthdate, displayedComponents: .date)
                 }
                 
-                Section(header: Text("Sleep Preferences")) {
-                    DatePicker("Time You Wake Up", selection: $wakeUpTime, displayedComponents: .hourAndMinute)
-                    DatePicker("Time You Sleep", selection: $sleepTime, displayedComponents: .hourAndMinute)
-                    DatePicker("Lunchtime", selection: $lunchtime, displayedComponents: .hourAndMinute)
-                    //Toggle("Nap", isOn: $shouldNap)
-                    //    .toggleStyle(SwitchToggleStyle(tint: .purple))
-                }
+//                Section(header: Text("Sleep Preferences")) {
+//                    DatePicker("Time You Wake Up", selection: $wakeUpTime, displayedComponents: .hourAndMinute)
+//                    DatePicker("Time You Sleep", selection: $sleepTime, displayedComponents: .hourAndMinute)
+//                    DatePicker("Lunchtime", selection: $lunchtime, displayedComponents: .hourAndMinute)
+//                    //Toggle("Nap", isOn: $shouldNap)
+//                    //    .toggleStyle(SwitchToggleStyle(tint: .purple))
+//                }
                 
                 //EDIT ACTIVITY PREFERENCES AFTER IMPLEMENTING WORKOUT INFO
                 Section(header: Text("Activity Preferences")) {
                     //DatePicker("Start Time", selection: $startTime, displayedComponents: .hourAndMinute)
                     //TextField("Duration (minutes)", text: $duration) //maybe a picker
-                    TextField("Steps Goal", text: $stepsGoal)
+                    if (userprofileVM.user_data.getStepsGoal() == 0){
+                        TextField("Steps Goal", text: $stepsGoal)
+                    }else{
+                        TextField(String(userprofileVM.user_data.getStepsGoal()), text: $stepsGoal)
+                    }
                 }
                 
                 Section(header: Text("Food Preferences")) {
-                    TextField("Daily Calorie Intake Goal", text: $calories)
+                    if (userprofileVM.user_data.getCalories() == 0){
+                        TextField("Calorie Intake Goal", text: $calories)
+                    }else{
+                        TextField(String(userprofileVM.user_data.getCalories()), text: $calories)
+                    }
                 }
                 
             }
@@ -75,12 +101,35 @@ struct UserProfileView: View {
                         Image(systemName: "keyboard.chevron.compact.down")
                     }
                     
-                    Button("Save", action: saveUser)
+//                    Button("Save", action: saveUser)
+                    Button("Save") {
+                        saveUser()
+                        Task {
+                            let success = await userprofileVM.saveUserProfile(user_data: user_data)
+                            if success {
+                                //yay it worked!
+                            } else {
+                                print("error saving profile")
+                            }
+                        }
+                    }
                     
                 }
             }
         }
         .accentColor(.purple)
+        .onAppear() {
+            do {
+                self.userprofileVM.getUserProfile()
+            } catch {
+                print("error fetching data")
+            }
+            //            if success {
+            //                //yay it worked!
+            //            } else {
+            //                print("error retreiving profile")
+            //            }
+        }
     }
     
     func saveUser() {
@@ -94,10 +143,10 @@ struct UserProfileView: View {
         self.user_data.setLastName(lastName: self.lastName)
         self.user_data.setAge(age: self.age)
         
-        self.user_data.setWakeUpTime(wakeUpTime: self.wakeUpTime)
-        self.user_data.setSleepTime(sleepTime: self.sleepTime)
-        //print(self.user_data.getTimeSlept())
-        self.user_data.setLunchtime(lunchtime: self.lunchtime)
+//        self.user_data.setWakeUpTime(wakeUpTime: self.wakeUpTime)
+//        self.user_data.setSleepTime(sleepTime: self.sleepTime)
+//        //print(self.user_data.getTimeSlept())
+//        self.user_data.setLunchtime(lunchtime: self.lunchtime)
         
         self.user_data.setStepsGoal(stepsGoal: self.stepsGoal)
         
