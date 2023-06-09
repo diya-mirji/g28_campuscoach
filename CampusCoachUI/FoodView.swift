@@ -8,6 +8,29 @@
 import Foundation
 import SwiftUI
 
+struct Meal: Codable {
+    var readyInMinutes: Int
+    var sourceUrl: String
+    var servings: Int
+    var id: Int
+    var title: String
+    var imageType: String
+}
+
+struct MealsResponse: Codable {
+    var meals: [Meal]
+    var nutrients: Nutrients
+}
+
+struct Nutrients: Codable {
+    var fat: Double
+    var carbohydrates: Double
+    var calories: Double
+    var protein: Double
+}
+
+
+
 struct FoodView: View {
     
     private var daily_calories = 1789.0 //from user profile
@@ -15,12 +38,24 @@ struct FoodView: View {
     private var maxValue = 2000.0
     //maxValue should be the daily calories the user needs (2000/2500)
     
+    @State private var breakfast_dish = "Breakfast Dish"
+    @State private var breakfast_servings = "Servings 000"
+    @State private var breakfast_url = "https://www.google.com"
+    @State private var lunch_dish = "Lunch Dish"
+    @State private var lunch_servings = "Servings 000"
+    @State private var lunch_url = "https://www.google.com"
+    @State private var dinner_dish = "Dinner Dish"
+    @State private var dinner_servings = "Servings 000"
+    @State private var dinner_url = "https://www.google.com"
+    
+    
+    @State public var dish_list: [String] = []
     private var user_data = UserProfileData()
     
     init(user_data: UserProfileData) {
         self.user_data = user_data
-        self.daily_calories = Double(self.user_data.getCalories())
-        self.maxValue = Double(self.user_data.getRightCalories())
+        //        self.daily_calories = Double(self.user_data.getCalories())
+        //        self.maxValue = Double(self.user_data.getRightCalories())
     }
     
     var body: some View {
@@ -48,36 +83,35 @@ struct FoodView: View {
                 
                 
                 
+                
                 Spacer()
                     .frame(width: 100, height: 60) //20
                 
                 //Breakfast Box
-                Link(destination: URL(string: "https://www.apple.com")!) {
+                Link(destination: URL(string: breakfast_url)!) {
                     HStack{
                         VStack {
                             Text("Breakfast")
                                 .font(.title2)
                                 .bold()
                             
-                            Text("000 Calories")
+                            Text("Servings: " + breakfast_servings)
                                 .italic()
                                 .bold()
                             
                             Spacer()
                                 .frame(width: 60, height: 10)
                             
-                            Text("Name of Dish")
+                            Text(breakfast_dish)
                                 .fontWeight(.heavy)
                             
-                            Text("Cuisine: Cuisine")
-                                .italic()
                         }
                         //.multilineTextAlignment(.leading)
                         
                         Spacer()
                             .frame(width: 30, height: 20)
                         
-                        Image(systemName: "birthday.cake.fill")
+                        Image(systemName: "sun.max.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width:80, height:80)
@@ -99,32 +133,30 @@ struct FoodView: View {
                 
                 
                 //Lunch Box
-                Link(destination: URL(string: "https://www.google.com")!) {
+                Link(destination: URL(string: lunch_url)!) {
                     HStack{
                         VStack {
                             Text("Lunch")
                                 .font(.title2)
                                 .bold()
                             
-                            Text("000 Calories")
+                            Text("Servings: " + lunch_servings)
                                 .italic()
                                 .bold()
                             
                             Spacer()
                                 .frame(width: 60, height: 10)
                             
-                            Text("Name of Dish")
+                            Text(lunch_dish)
                                 .fontWeight(.heavy)
                             
-                            Text("Cuisine: Cuisine")
-                                .italic()
                         }
                         //.multilineTextAlignment(.leading)
                         
                         Spacer()
                             .frame(width: 30, height: 20)
                         
-                        Image(systemName: "birthday.cake.fill")
+                        Image(systemName: "fork.knife")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width:80, height:80)
@@ -146,32 +178,31 @@ struct FoodView: View {
                 
                 
                 //Dinner Box
-                Link(destination: URL(string: "https://www.youtube.com")!) {
+                Link(destination: URL(string: dinner_url)!) {
                     HStack{
                         VStack {
                             Text("Dinner")
                                 .font(.title2)
                                 .bold()
                             
-                            Text("000 Calories")
+                            Text("Servings: " + dinner_servings)
                                 .italic()
                                 .bold()
                             
                             Spacer()
                                 .frame(width: 60, height: 10)
                             
-                            Text("Name of Dish")
+                            Text(dinner_dish)
                                 .fontWeight(.heavy)
                             
-                            Text("Cuisine: Cuisine")
-                                .italic()
+
                         }
                         //.multilineTextAlignment(.leading)
                         
                         Spacer()
                             .frame(width: 30, height: 20)
                         
-                        Image(systemName: "birthday.cake.fill")
+                        Image(systemName: "moon.stars.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width:80, height:80)
@@ -195,15 +226,66 @@ struct FoodView: View {
             .navigationTitle("Food")
         }
         .accentColor(.purple)
+        .onAppear() {
+            getFood()
+        }
     }
+    
+    func getFood() {
+        
+        let headers = [
+            "X-RapidAPI-Key": "deb0af99cbmsh6b582ba303a313ap1748f5jsn5b9d96646f40",
+            "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+        ]
+        
+        let request = NSMutableURLRequest(url: NSURL(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate?timeFrame=day&targetCalories=1789&diet=vegetarian&exclude=shellfish%2C%20olives")! as URL,
+                                          cachePolicy: .useProtocolCachePolicy,
+                                          timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            if (error != nil) {
+                print(error as Any)
+            } else {
+//                let httpResponse = response as? HTTPURLResponse
+                
+                if let responseData = data {
+                            do {
+                                let decoder = JSONDecoder()
+                                let mealsResponse = try decoder.decode(MealsResponse.self, from: responseData)
+                                let meals = mealsResponse.meals // Access the array of Meal objects
+                                for meal in meals {
+//                                    dish_list.append(meal.title)
+                                    self.breakfast_dish = meal.title
+                                    print("Title: \(meal.title), Ready in Minutes: \(meal.readyInMinutes)")
+                                }
+                                
+                                self.breakfast_dish = meals[0].title
+                                self.breakfast_servings = String(meals[0].servings)
+                                self.breakfast_url = meals[0].sourceUrl
+                                self.lunch_dish = meals[1].title
+                                self.lunch_servings = String(meals[1].servings)
+                                self.lunch_url = meals[1].sourceUrl
+                                self.dinner_dish = meals[2].title
+                                self.dinner_servings = String(meals[2].servings)
+                                self.dinner_url = meals[2].sourceUrl
+                                
+                                
+                            } catch {
+                                print("Error parsing JSON: \(error)")
+                            }
+                        }
+                
+                print(data as Any)
+                
+            }
+        })
+        
+        dataTask.resume()
+        
+    }
+    
+    
 }
-
-
-
-
-//struct FoodView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FoodView()
-//
-//    }
-//}
