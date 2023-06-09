@@ -1,0 +1,130 @@
+{
+    
+    "exercises": [
+        
+        {
+            "name": "Bicep Curl",
+            "sets": "3",
+            "reps": "10",
+            "time": "10"
+        },
+        {
+            "name": "Hammer Curl",
+            "sets": "2",
+            "reps": "8",
+            "time": "5"
+        },
+        {
+            "name": "Concentrated Curl",
+            "sets": "3",
+            "reps": "10",
+            "time": "10"
+        },
+        {
+            "name": "Incline Dumbbell Curl",
+            "sets": "3",
+            "reps": "8",
+            "time": "10"
+        },
+        {
+            "name": "Overhead Tricep Extension",
+            "sets": "3",
+            "reps": "10",
+            "time": "10"
+        },
+        {
+            "name": "Push-down",
+            "sets": "3",
+            "reps": "12",
+            "time": "10"
+        },
+        {
+            "name": "Dips",
+            "sets": "4",
+            "reps": "10",
+            "time": "10"
+        },
+        {
+            "name": "Push up",
+            "sets": "3",
+            "reps": "10",
+            "time": "5"
+        },
+        {
+            "name": "Dumbbell Shoulder Raises",
+            "sets": "3",
+            "reps": "10",
+            "time": "10"
+        },
+        {
+            "name": "Lateral Raises",
+            "sets": "3",
+            "reps": "12",
+            "time": "5"
+        },
+        {
+            "name": "Face Pulls",
+            "sets": "3",
+            "reps": "10",
+            "time": "10"
+        },
+        {
+            "name": "Bent Over Reverse Fly",
+            "sets": "3",
+            "reps": "10",
+            "time": "5"
+        },
+        {
+            "name": "Barbell Squats",
+            "sets": "3",
+            "reps": "8",
+            "time": "15"
+        },
+        {
+            "name": "Leg Press",
+            "sets": "4",
+            "reps": "10",
+            "time": "10"
+        },
+        {
+            "name": "Calf Raises",
+            "sets": "4",
+            "reps": "10",
+            "time": "10"
+        },
+        {
+            "name": "Crunches",
+            "sets": "3",
+            "reps": "10",
+            "time": "5"
+        },
+        {
+            "name": "Russian Twists",
+            "sets": "3",
+            "reps": "12",
+            "time": "15"
+        },
+        {
+            "name": "Scissor Kicks",
+            "sets": "3",
+            "reps": "10",
+            "time": "5"
+        },
+        {
+            "name": "Hanging Leg Raises",
+            "sets": "3",
+            "reps": "10",
+            "time": "10"
+        },
+        {
+            "name": "Sit Ups",
+            "sets": "3",
+            "reps": "10",
+            "time": "5"
+        }
+        
+    ]
+    
+}
+
+
