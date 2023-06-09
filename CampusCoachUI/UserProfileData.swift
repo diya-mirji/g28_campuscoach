@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
+
 import HealthKit
 
 class UserProfileData {
+    private var uid = UIDevice.current.identifierForVendor?.uuidString
     //from UserProfileView
     private var firstName = ""
     private var lastName = ""
@@ -186,6 +189,9 @@ class UserProfileData {
     
     
     //getters
+    func getUserId() -> String {
+        return self.uid!
+    }
     func getFirstName() -> String {
         return self.firstName
     }
@@ -198,6 +204,10 @@ class UserProfileData {
     
     func getLunchtime() -> (hour: Int, minute: Int) {
         return getDateTime(myDate: self.lunchtime)
+    }
+    
+    func getStepsGoal() -> Int {
+        return self.stepsGoal
     }
     
     func getCalories() -> Int {

@@ -33,7 +33,12 @@ struct Nutrients: Codable {
 
 struct FoodView: View {
     
+
+    @ObservedObject var userprofileVM = UserProfileModel()
+    //@State private var daily_calories = 1789.0 //from user profile
+
     private var daily_calories = 1789.0 //from user profile
+
     @State private var minValue = 0.0
     private var maxValue = 2000.0
     //maxValue should be the daily calories the user needs (2000/2500)
@@ -227,6 +232,7 @@ struct FoodView: View {
         }
         .accentColor(.purple)
         .onAppear() {
+
             getFood()
         }
     }
