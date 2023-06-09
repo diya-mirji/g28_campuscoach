@@ -10,9 +10,16 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State private var lifestyle_score = 78.0
+    private var lifestyle_score = 78.0
     @State private var minValue = 0.0
     @State private var maxValue = 100.0
+    
+    private var user_data = UserProfileData()
+    
+    init(user_data: UserProfileData) {
+        self.user_data = user_data
+        self.lifestyle_score = self.user_data.calcLifestyleScore()
+    }
     
     var body: some View {
         NavigationView {

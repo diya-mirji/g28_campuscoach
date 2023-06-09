@@ -18,7 +18,7 @@ struct ContentView: View {
     var body: some View {
         
         TabView {
-            HomeView()
+            HomeView(user_data: self.user_data)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
@@ -30,7 +30,7 @@ struct ContentView: View {
                     Text("Sleep")
                 }
             
-            FoodView()
+            FoodView(user_data: self.user_data)
                 .tabItem {
                     Image(systemName: "fork.knife")
                     Text("Food")

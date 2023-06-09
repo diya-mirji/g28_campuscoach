@@ -21,6 +21,7 @@
 		62937F432A207786008307AB /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62937F422A207786008307AB /* ActivityView.swift */; };
 		62937F452A207792008307AB /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62937F442A207792008307AB /* FoodView.swift */; };
 		62937F472A207B6A008307AB /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62937F462A207B6A008307AB /* StartView.swift */; };
+		62FD28FB2A2D0D16003C1B8D /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FD28FA2A2D0D16003C1B8D /* HealthKitSetupAssistant.swift */; };
 		87129AC72A2C517A00DDFCA7 /* ActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87129AC62A2C517A00DDFCA7 /* ActivityDetailView.swift */; };
 		A2103BB02A2C7153000B4D38 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2103BAF2A2C7153000B4D38 /* GoogleService-Info.plist */; };
 		A2103BB32A2C74B6000B4D38 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A2103BB22A2C74B6000B4D38 /* FirebaseAnalytics */; };
@@ -66,6 +67,8 @@
 		62937F422A207786008307AB /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		62937F442A207792008307AB /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
 		62937F462A207B6A008307AB /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		62FD28F92A2D0B9B003C1B8D /* CampusCoachUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CampusCoachUI.entitlements; sourceTree = "<group>"; };
+		62FD28FA2A2D0D16003C1B8D /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSetupAssistant.swift; sourceTree = "<group>"; };
 		87129AC62A2C517A00DDFCA7 /* ActivityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailView.swift; sourceTree = "<group>"; };
 		A2103BAF2A2C7153000B4D38 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A2103BBC2A2C8FA0000B4D38 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
@@ -125,6 +128,7 @@
 		6291AA952A2001C500448836 /* CampusCoachUI */ = {
 			isa = PBXGroup;
 			children = (
+				62FD28F92A2D0B9B003C1B8D /* CampusCoachUI.entitlements */,
 				6291AA962A2001C500448836 /* CampusCoachUIApp.swift */,
 				62937F462A207B6A008307AB /* StartView.swift */,
 				6291AA982A2001C500448836 /* ContentView.swift */,
@@ -136,7 +140,11 @@
 				62937F3E2A206F50008307AB /* UserProfileView.swift */,
 				A2103BBC2A2C8FA0000B4D38 /* UserProfileModel.swift */,
 				62758F332A2551E1006972CC /* UserProfileData.swift */,
+
 				A2103BAF2A2C7153000B4D38 /* GoogleService-Info.plist */,
+
+				62FD28FA2A2D0D16003C1B8D /* HealthKitSetupAssistant.swift */,
+
 				6291AA9A2A2001C600448836 /* Assets.xcassets */,
 				6291AA9C2A2001C600448836 /* Preview Content */,
 			);
@@ -322,6 +330,7 @@
 				6291AA972A2001C500448836 /* CampusCoachUIApp.swift in Sources */,
 				62937F412A207756008307AB /* SleepView.swift in Sources */,
 				62937F3F2A206F50008307AB /* UserProfileView.swift in Sources */,
+				62FD28FB2A2D0D16003C1B8D /* HealthKitSetupAssistant.swift in Sources */,
 				62937F472A207B6A008307AB /* StartView.swift in Sources */,
 				62937F432A207786008307AB /* ActivityView.swift in Sources */,
 				87129AC72A2C517A00DDFCA7 /* ActivityDetailView.swift in Sources */,
@@ -483,12 +492,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CampusCoachUI/CampusCoachUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CampusCoachUI/Preview Content\"";
 				DEVELOPMENT_TEAM = F355Q2J5VY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "This app requires to access your health data. ";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app requires to access your health data. ";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app requires to access your health data. ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -512,12 +525,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CampusCoachUI/CampusCoachUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CampusCoachUI/Preview Content\"";
 				DEVELOPMENT_TEAM = F355Q2J5VY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "This app requires to access your health data. ";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app requires to access your health data. ";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app requires to access your health data. ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
