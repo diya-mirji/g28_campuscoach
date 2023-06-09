@@ -36,17 +36,17 @@ struct ContentView: View {
                     Text("Food")
                 }
             
-            ActivityView()
+            ActivityView(user_data: self.user_data)
                 .tabItem {
                     Image(systemName: "dumbbell.fill")
                     Text("Activity")
                 }
             
-            UserProfileView(user_data: self.user_data)
-                .tabItem {
-                    Image(systemName: "person")
-                    Text("User Profile")
-                }
+//            UserProfileView(user_data: self.user_data)
+//                .tabItem {
+//                    Image(systemName: "person")
+//                    Text("User Profile")
+//                }
         }
         
     }

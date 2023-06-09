@@ -17,13 +17,14 @@ struct UserProfileView: View {
     //@State private var birthdate = Date()
     
     //@State private var shouldNap = false
-    @State private var wakeUpTime = Date()
-    @State private var sleepTime = Date()
+    //@State private var wakeUpTime = Date()
+    //@State private var sleepTime = Date()
     @State private var lunchtime = Date()
     
     //@State private var startTime = Date()
     //@State private var duration = "" //change into int later
-    @State private var stepsGoal = "" //change into int later
+    //@State private var stepsGoal = "" //change into int later
+    @State private var workoutTime = ""
     
     @State private var calories = "" //change into int later
     
@@ -61,22 +62,39 @@ struct UserProfileView: View {
                     //DatePicker("Birthdate", selection: $birthdate, displayedComponents: .date)
                 }
                 
-//                Section(header: Text("Sleep Preferences")) {
+                Section(header: Text("Sleep Preferences")) {
 //                    DatePicker("Time You Wake Up", selection: $wakeUpTime, displayedComponents: .hourAndMinute)
 //                    DatePicker("Time You Sleep", selection: $sleepTime, displayedComponents: .hourAndMinute)
-//                    DatePicker("Lunchtime", selection: $lunchtime, displayedComponents: .hourAndMinute)
+                    DatePicker("Lunchtime", selection: $lunchtime, displayedComponents: .hourAndMinute)
 //                    //Toggle("Nap", isOn: $shouldNap)
 //                    //    .toggleStyle(SwitchToggleStyle(tint: .purple))
-//                }
+                }
                 
                 //EDIT ACTIVITY PREFERENCES AFTER IMPLEMENTING WORKOUT INFO
-                Section(header: Text("Activity Preferences")) {
+                Section(header: Text("Activity Preferences"), footer: Text("Workout Duration (minutes)")) {
                     //DatePicker("Start Time", selection: $startTime, displayedComponents: .hourAndMinute)
                     //TextField("Duration (minutes)", text: $duration) //maybe a picker
-                    if (userprofileVM.user_data.getStepsGoal() == 0){
-                        TextField("Steps Goal", text: $stepsGoal)
-                    }else{
-                        TextField(String(userprofileVM.user_data.getStepsGoal()), text: $stepsGoal)
+                    
+//                    if (userprofileVM.user_data.getStepsGoal() == 0){
+//                        TextField("Steps Goal", text: $stepsGoal)
+//                    }else{
+//                        TextField(String(userprofileVM.user_data.getStepsGoal()), text: $stepsGoal)
+//                    }
+                    //TODO: HELPPPPPPPPPPP
+                    if (userprofileVM.user_data.getWorkoutTime() == 0){
+                        Picker("Workout Duration (minutes)", selection: $workoutTime) {
+                            ForEach(["10", "20", "30", "60"], id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                    } else {
+                        Picker(String(userprofileVM.user_data.getWorkoutTime()), selection: $workoutTime) {
+                            ForEach(["10", "20", "30", "60"], id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        .pickerStyle(.segmented)
                     }
                 }
                 
@@ -134,21 +152,22 @@ struct UserProfileView: View {
     
     func saveUser() {
         print("\(self.firstName), \(self.lastName), \(self.age)")
-        print("\(self.wakeUpTime), \(self.sleepTime), \(self.lunchtime)")
-        print("\(self.stepsGoal)")
+        print("\(self.lunchtime)")
+        //print("\(self.stepsGoal)")
+        print("\(self.workoutTime)")
         print("\(self.calories)")
         
         self.user_data.setFirstName(firstName: self.firstName)
-        print(self.user_data.getFirstName())
         self.user_data.setLastName(lastName: self.lastName)
         self.user_data.setAge(age: self.age)
         
 //        self.user_data.setWakeUpTime(wakeUpTime: self.wakeUpTime)
 //        self.user_data.setSleepTime(sleepTime: self.sleepTime)
 //        //print(self.user_data.getTimeSlept())
-//        self.user_data.setLunchtime(lunchtime: self.lunchtime)
+        self.user_data.setLunchtime(lunchtime: self.lunchtime)
         
-        self.user_data.setStepsGoal(stepsGoal: self.stepsGoal)
+        //self.user_data.setStepsGoal(stepsGoal: self.stepsGoal)
+        self.user_data.setWorkoutTime(workoutTime: self.workoutTime)
         
         self.user_data.setCalories(calories: self.calories)
         

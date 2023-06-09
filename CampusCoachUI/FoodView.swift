@@ -59,8 +59,8 @@ struct FoodView: View {
     
     init(user_data: UserProfileData) {
         self.user_data = user_data
-        //        self.daily_calories = Double(self.user_data.getCalories())
-        //        self.maxValue = Double(self.user_data.getRightCalories())
+        self.daily_calories = Double(self.user_data.getCalories())
+        self.maxValue = Double(self.user_data.getRightCalories())
     }
     
     var body: some View {

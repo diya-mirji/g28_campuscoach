@@ -97,7 +97,7 @@ struct StartView: View {
             do {
                 try self.user_data.readSex()
                 self.user_data.calcRightCalories()
-                self.user_data.readEnergy() // String(format: "%.2f", self.user_data.getEnergy())
+                self.user_data.readEnergy(the_day: Date()) // String(format: "%.2f", self.user_data.getEnergy())
                 self.user_data.readTimeInBed()
                 self.user_data.readREMDeepSleep()
                 

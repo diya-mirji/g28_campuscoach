@@ -9,20 +9,29 @@ import SwiftUI
 
 struct ActivityDetailView: View {
     
-    var workout: Workout
+    var workout: [[String]] = []
+    
+    init(workout: [[String]]) {
+        self.workout = workout
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(workout.day)
-                .padding(.leading, 30)
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-            Text(workout.bodyPart)
+            Text("Exercises")
                 .padding(.leading, 30)
                 .font(.title)
+                .fontWeight(.semibold)
+//            Text(workout.bodyPart)
+//                .padding(.leading, 30)
+//                .font(.title)
             
-            List(workout.routine, id: \.self) { exercise in
-                Text(exercise)
+            List(workout, id: \.self) { exercise in
+                Text(exercise[0])
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                Text("      \(exercise[1]) sets")
+                Text("      \(exercise[2]) reps")
+                Text("      \(exercise[3]) minutes")
             }
             
         }
@@ -31,6 +40,6 @@ struct ActivityDetailView: View {
 
 struct ActivityDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityDetailView(workout: Workout(day: "Monday", bodyPart: "Abs", image: "stabilityball", routine: ["Warmups", "planks", "situps"]))
+        ActivityDetailView(workout: [["Dumbbell Shoulder Raises", "3", "10", "10"], ["Push-down", "3", "12", "10"], ["Overhead Tricep Extension", "3", "10", "10"]])
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		624623AC2A33781D00979540 /* exercises.json in Resources */ = {isa = PBXBuildFile; fileRef = 624623AB2A33781D00979540 /* exercises.json */; };
 		62758F342A2551E1006972CC /* UserProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62758F332A2551E1006972CC /* UserProfileData.swift */; };
 		6291AA972A2001C500448836 /* CampusCoachUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6291AA962A2001C500448836 /* CampusCoachUIApp.swift */; };
 		6291AA992A2001C500448836 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6291AA982A2001C500448836 /* ContentView.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		624623AB2A33781D00979540 /* exercises.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = exercises.json; path = ../../../../exercises.json; sourceTree = "<group>"; };
 		62758F332A2551E1006972CC /* UserProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileData.swift; sourceTree = "<group>"; };
 		6291AA932A2001C500448836 /* CampusCoachUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusCoachUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6291AA962A2001C500448836 /* CampusCoachUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusCoachUIApp.swift; sourceTree = "<group>"; };
@@ -137,14 +139,12 @@
 				62937F442A207792008307AB /* FoodView.swift */,
 				62937F422A207786008307AB /* ActivityView.swift */,
 				87129AC62A2C517A00DDFCA7 /* ActivityDetailView.swift */,
+				624623AB2A33781D00979540 /* exercises.json */,
 				62937F3E2A206F50008307AB /* UserProfileView.swift */,
 				A2103BBC2A2C8FA0000B4D38 /* UserProfileModel.swift */,
 				62758F332A2551E1006972CC /* UserProfileData.swift */,
-
 				A2103BAF2A2C7153000B4D38 /* GoogleService-Info.plist */,
-
 				62FD28FA2A2D0D16003C1B8D /* HealthKitSetupAssistant.swift */,
-
 				6291AA9A2A2001C600448836 /* Assets.xcassets */,
 				6291AA9C2A2001C600448836 /* Preview Content */,
 			);
@@ -298,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6291AA9E2A2001C600448836 /* Preview Assets.xcassets in Resources */,
+				624623AC2A33781D00979540 /* exercises.json in Resources */,
 				A2103BB02A2C7153000B4D38 /* GoogleService-Info.plist in Resources */,
 				6291AA9B2A2001C600448836 /* Assets.xcassets in Resources */,
 			);
