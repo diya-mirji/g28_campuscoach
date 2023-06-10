@@ -21,9 +21,7 @@ struct ActivityDetailView: View {
                 .padding(.leading, 30)
                 .font(.title)
                 .fontWeight(.semibold)
-//            Text(workout.bodyPart)
-//                .padding(.leading, 30)
-//                .font(.title)
+
             
             List(workout, id: \.self) { exercise in
                 Text(exercise[0])
@@ -38,8 +36,8 @@ struct ActivityDetailView: View {
     }
 }
 
-struct ActivityDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActivityDetailView(workout: [["Dumbbell Shoulder Raises", "3", "10", "10"], ["Push-down", "3", "12", "10"], ["Overhead Tricep Extension", "3", "10", "10"]])
-    }
-}
+//struct ActivityDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ActivityDetailView(workout: [["Dumbbell Shoulder Raises", "3", "10", "10"], ["Push-down", "3", "12", "10"], ["Overhead Tricep Extension", "3", "10", "10"]])
+//    }
+//}

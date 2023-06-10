@@ -42,11 +42,6 @@ struct ContentView: View {
                     Text("Activity")
                 }
             
-//            UserProfileView(user_data: self.user_data)
-//                .tabItem {
-//                    Image(systemName: "person")
-//                    Text("User Profile")
-//                }
         }
         
     }

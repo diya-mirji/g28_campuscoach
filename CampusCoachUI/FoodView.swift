@@ -35,13 +35,11 @@ struct FoodView: View {
     
 
     @ObservedObject var userprofileVM = UserProfileModel()
-    //@State private var daily_calories = 1789.0 //from user profile
 
     private var daily_calories = 1789.0 //from user profile
 
     @State private var minValue = 0.0
     private var maxValue = 2000.0
-    //maxValue should be the daily calories the user needs (2000/2500)
     
     @State private var breakfast_dish = "Breakfast Dish"
     @State private var breakfast_servings = "Servings 000"
@@ -90,7 +88,7 @@ struct FoodView: View {
                 
                 
                 Spacer()
-                    .frame(width: 100, height: 60) //20
+                    .frame(width: 100, height: 60)
                 
                 //Breakfast Box
                 Link(destination: URL(string: breakfast_url)!) {
@@ -111,7 +109,7 @@ struct FoodView: View {
                                 .fontWeight(.heavy)
                             
                         }
-                        //.multilineTextAlignment(.leading)
+                        
                         
                         Spacer()
                             .frame(width: 30, height: 20)
@@ -156,7 +154,7 @@ struct FoodView: View {
                                 .fontWeight(.heavy)
                             
                         }
-                        //.multilineTextAlignment(.leading)
+                        
                         
                         Spacer()
                             .frame(width: 30, height: 20)
@@ -202,7 +200,7 @@ struct FoodView: View {
                             
 
                         }
-                        //.multilineTextAlignment(.leading)
+                        
                         
                         Spacer()
                             .frame(width: 30, height: 20)
@@ -263,7 +261,7 @@ struct FoodView: View {
                                 let mealsResponse = try decoder.decode(MealsResponse.self, from: responseData)
                                 let meals = mealsResponse.meals // Access the array of Meal objects
                                 for meal in meals {
-//                                    dish_list.append(meal.title)
+
                                     self.breakfast_dish = meal.title
                                     print("Title: \(meal.title), Ready in Minutes: \(meal.readyInMinutes)")
                                 }

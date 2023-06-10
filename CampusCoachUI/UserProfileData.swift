@@ -17,11 +17,8 @@ class UserProfileData {
     private var lastName = ""
     private var age = 0
     
-    //private var wakeUpTime = Date()
-    //private var sleepTime = Date()
     private var lunchtime = Date()
     
-    //private var stepsGoal = 0
     private var workoutTime = 0
     
     private var calories = 0
@@ -66,7 +63,6 @@ class UserProfileData {
             return
         }
         
-        //let now = Date()
         let dailyPredicate = HKQuery.predicateForSamples(withStart: Calendar.current.startOfDay(for: the_day), end: the_day, options: .strictEndDate)
         
         var total = 0.0
@@ -78,8 +74,7 @@ class UserProfileData {
             total = samples.reduce(0.0, {$0 + $1.quantity.doubleValue(for: HKUnit.smallCalorie())}) //quantitySamples.quantity.doubleValue(for: HKUnit.smallCalorie())  //quantitySamples.reduce(0.0) { $0 + $1.quantity.doubleValue(for: HKUnit.largeCalorie()) }
             self.weekEnergy[the_day] = total
             self.energy = total
-            print("userprofiledata, energy", the_day, total)
-            //print(self.weekEnergy)
+
         }
         HKHealthStore().execute(energyQuery)
 
@@ -87,17 +82,10 @@ class UserProfileData {
     
     func storeWeekEnergy() {
         let today = Date()
-        //self.weekEnergy[today] = self.energy
         for i in 1...6 {
             let a_day = Calendar.current.date(byAdding: .day, value: -i, to: today) ?? Date()
             self.readEnergy(the_day: a_day)
-            //print(self.energy)
-            //self.weekEnergy[a_day] = self.energy
         }
-        //self.readEnergy(the_day: today)
-        //self.weekEnergy[today] = self.energy
-        
-        //print(self.weekEnergy)
     }
     
     
@@ -122,23 +110,12 @@ class UserProfileData {
             let startDate = categorySamples.startDate
             let endDate = categorySamples.endDate
             let components = self.computeDiffDate(fromDate: startDate, toDate: endDate)
-            //print("userprofiledata, components of diff", components)
+
             self.timeInBed = Double(components.0 ?? 0) + (Double(components.1 ?? 0)/60.0)
             print("userprofiledata, timeInBed", self.timeInBed)
-            //self.timeInBed = 6.1 //for demo
+
         }
         
-//        let sleepQuery = HKSampleQuery(sampleType: sleepType, predicate: dayAgoPredicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, sample, error) in
-//            guard let samples = sample?.first as? HKCategorySample else {
-//                return
-//            }
-//
-//            let startDate = samples.startDate
-//            let endDate = samples.endDate
-//            let components = self.computeDiffDate(fromDate: startDate, toDate: endDate)
-//            self.timeInBed = Double(components.0 ?? 0) + (Double(components.1 ?? 0)/60.0)
-//            print("userprofiledata, timeInBed", self.timeInBed)
-//        }
         HKHealthStore().execute(sleepQuery)
     }
     
@@ -197,22 +174,11 @@ class UserProfileData {
             self.age = Int(age) ?? 0
         }
     }
-    
-//    func setWakeUpTime(wakeUpTime: Date) {
-//        self.wakeUpTime = wakeUpTime
-//    }
-//    func setSleepTime(sleepTime: Date) {
-//        self.sleepTime = sleepTime
-//    }
+
     func setLunchtime(lunchtime: Date) {
         self.lunchtime = lunchtime
     }
     
-//    func setStepsGoal(stepsGoal: String) {
-//        if stepsGoal != "" {
-//            self.stepsGoal = Int(stepsGoal) ?? 0
-//        }
-//    }
     func setWorkoutTime(workoutTime: String) {
         self.workoutTime = Int(workoutTime) ?? 10
     }
@@ -243,9 +209,6 @@ class UserProfileData {
         return getDateTime(myDate: self.lunchtime)
     }
     
-//    func getStepsGoal() -> Int {
-//        return self.stepsGoal
-//    }
     func getWorkoutTime() -> Int {
         return self.workoutTime
     }

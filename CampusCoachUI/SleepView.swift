@@ -28,10 +28,10 @@ struct SleepView: View {
     init(user_data: UserProfileData) {
         self.user_data = user_data
         self.time_slept = self.user_data.getTimeInBed()
+        
         self.user_age = self.user_data.getAge()
         self.user_lunchtime = self.user_data.getLunchtime()
-        print("sleepview, lunchtime", self.user_lunchtime)
-        print("sleepview, time_slept", self.time_slept)
+        
         self.rem_sleep = self.user_data.getREMSleep()
         self.deep_sleep = self.user_data.getDeepSleep()
     }
@@ -125,7 +125,7 @@ struct SleepView: View {
                     .bold()
                 
                 //Nap Rec 1
-                Text(self.suggestNap(when:"before"))//"20 minutes at 2:30pm")
+                Text(self.suggestNap(when:"before"))
                     .font(.title3)
                     .padding(.horizontal, 60.0)
                     .padding(.vertical, 20.0)
@@ -134,7 +134,7 @@ struct SleepView: View {
                     .cornerRadius(50)
                 
                 //Nap Rec 2
-                Text(self.suggestNap(when: "after"))//"40 minutes at 4:20pm")
+                Text(self.suggestNap(when: "after"))
                     .font(.title3)
                     .padding(.horizontal, 60.0)
                     .padding(.vertical, 20.0)

@@ -26,7 +26,7 @@ class UserProfileModel: ObservableObject {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else if snapshot != nil {
-                var dictionary: [String: Any] { //no steps so will change to workoutTime
+                var dictionary: [String: Any] { 
                     return ["firstname": user_data.getFirstName(), "lastname": user_data.getLastName(), "uid": user_data.getUserId(), "age": String(user_data.getAge()), "workoutTime": String(user_data.getWorkoutTime()), "calories": String(user_data.getCalories())]
                 }
                 for document in snapshot!.documents {

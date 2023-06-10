@@ -10,29 +10,11 @@ import SwiftUI
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
-//
-//extension AuthenticationViewModel {
-//    func signIn() {
-//        if Auth.auth().currentUser == nil {
-//            Task {
-//                do {
-//                    try await Auth.auth().signInAnonymously()
-//                } catch {
-//                    print("issue logging in anonymously")
-//                }
-//            }
-//        } else {
-//            print("Someone is signed in")
-//            if let user = Auth.auth().currentUser {
-//                print(user.uid)
-//            }
-//        }
-//    }
-//}
+
 
 struct StartView: View {
     private var user_data = UserProfileData()
-    //testtest
+    
     var body: some View {
         NavigationView {
             VStack{
@@ -67,7 +49,6 @@ struct StartView: View {
                     Text("Start")
                         .bold()
                         .frame(width:280, height:50)
-                        // Note we can decide this later on
                         .background(Color.indigo)
                         //.background(Color(red: 0.62, green: 0.59, blue: 1.0))
                         .foregroundColor(.white)

@@ -19,21 +19,7 @@ struct ActivityView: View {
     private var weekEnergies: [Date:Double] = [:]
     
     
-    var viewDates: [ViewDate] = [ //just for testing
-        .init(date: Date.from(year: 2023, month: 12, day: 1), caloriesBurned: 300),
-        .init(date: Date.from(year: 2023, month: 12, day: 2), caloriesBurned: 400),
-        .init(date: Date.from(year: 2023, month: 12, day: 3), caloriesBurned: 900),
-        .init(date: Date.from(year: 2023, month: 12, day: 4), caloriesBurned: 20),
-        .init(date: Date.from(year: 2023, month: 12, day: 5), caloriesBurned: 100),
-        .init(date: Date.from(year: 2023, month: 12, day: 6), caloriesBurned: 140),
-        .init(date: Date.from(year: 2023, month: 12, day: 7), caloriesBurned: 160),
-//        ViewDate(date: Date(), caloriesBurned: 400),
-//        ViewDate(date: Date(), caloriesBurned: 200),
-//        ViewDate(date: Date(), caloriesBurned: 500),
-//        ViewDate(date: Date(), caloriesBurned: 400),
-//        ViewDate(date: Date(), caloriesBurned: 200),
-//        ViewDate(date: Date(), caloriesBurned: 500)
-    ]
+    var viewDates: [ViewDate] = []
     
     
     init(user_data: UserProfileData) {
@@ -47,17 +33,17 @@ struct ActivityView: View {
         self.workout = self.getRecommendedWorkout()
         
         self.weekEnergies = self.user_data.getWeekEnergy()
-        self.viewDates // convert weekEnergies to viewDates
+        let energies = [Double](self.weekEnergies.values)
         let today = Date()
         self.viewDates = [ //for demo
-            .init(date: Calendar.current.date(byAdding: .day, value: -6, to: today) ?? today, caloriesBurned: 176.9), .init(date: Calendar.current.date(byAdding: .day, value: -5, to: today) ?? today, caloriesBurned: 21.0), .init(date: Calendar.current.date(byAdding: .day, value: -4, to: today) ?? today, caloriesBurned: 0.0), .init(date: Calendar.current.date(byAdding: .day, value: -3, to: today) ?? today, caloriesBurned: 70.0), .init(date: Calendar.current.date(byAdding: .day, value: -2, to: today) ?? today, caloriesBurned: 0.0), .init(date: Calendar.current.date(byAdding: .day, value: -1, to: today) ?? today, caloriesBurned: 298.00000000000006), .init(date: today, caloriesBurned: 0.0)     ]
+            .init(date: Calendar.current.date(byAdding: .day, value: -6, to: today) ?? today, caloriesBurned: energies[6]), .init(date: Calendar.current.date(byAdding: .day, value: -5, to: today) ?? today, caloriesBurned: energies[5]), .init(date: Calendar.current.date(byAdding: .day, value: -4, to: today) ?? today, caloriesBurned: energies[4]), .init(date: Calendar.current.date(byAdding: .day, value: -3, to: today) ?? today, caloriesBurned: energies[3]), .init(date: Calendar.current.date(byAdding: .day, value: -2, to: today) ?? today, caloriesBurned: energies[2]), .init(date: Calendar.current.date(byAdding: .day, value: -1, to: today) ?? today, caloriesBurned: energies[1]), .init(date: today, caloriesBurned: energies[0])     ]
         
         
     }
     
     var body: some View {
         NavigationView {
-            VStack(/*alignment: .leading*/) {
+            VStack() {
                 
                 //Main Card View
                 NavigationLink(destination: ActivityDetailView(workout: self.workout), label: {
@@ -82,7 +68,7 @@ struct ActivityView: View {
                         
                         .padding()
                         .frame(width: 300)
-                        //.background(Color.indigo).opacity
+                        
                     }
                     .frame(width: 340, height: 300)
                     .cornerRadius(20)
@@ -102,23 +88,17 @@ struct ActivityView: View {
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
-                    //Text("Hello, World!")
+                    
                     ForEach(viewDates) { viewDate in
                         BarMark(
                             x: .value("Date", viewDate.date),
                             y: .value("Active Energy Burned", viewDate.caloriesBurned)
                         )
-                        //                    .annotation(alignment: .top) {
-                        //                        Text("\(viewDate.caloriesBurned)")
-                        //                            .font(.caption)
-                        //                            .foregroundColor(.white)
-                        //                            .padding(4)
-                        //                            .background(Color.red)
-                        //                            .cornerRadius(4)
+                        
                     }
                     .foregroundStyle(Color(red: 0.42, green: 0.39, blue: 1.0).gradient)
                     .cornerRadius(0)
-                    //.foregroundColor(Color(red: 0.42, green: 0.39, blue: 1.0))
+                    
                 } //Chart
                 .padding(.horizontal, 20)
                 .frame(height: 240)
@@ -176,7 +156,7 @@ struct ActivityView: View {
             for index in 0...decodedData.exercises.count-1 {
                 elist.append( [decodedData.exercises[index].name, decodedData.exercises[index].sets, decodedData.exercises[index].reps, decodedData.exercises[index].time] )
             }
-            //print(elist) //
+            
             return elist
             
         } catch {
@@ -231,10 +211,10 @@ extension Date {
 }
 
 
-struct ActivityView_Previews: PreviewProvider {
-    static var previews: some View {
-        StartView()
-    }
-}
+//struct ActivityView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StartView()
+//    }
+//}
 
 

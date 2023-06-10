@@ -37,8 +37,7 @@ struct HomeView: View {
                 //Score Gauge
                 Gauge(value: lifestyle_score, in: minValue...maxValue) {
                     Text("Calories")
-//                    Image(systemName: "heart.fill")
-//                        .foregroundColor(.red)
+
                 } currentValueLabel: {
                     Text("\(Int(lifestyle_score))")
                         .foregroundColor(Color.black)
